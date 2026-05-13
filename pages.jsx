@@ -203,6 +203,11 @@ function ArtistsPage() {
         {window.JK_ARTISTS.filter(a=>!a.hidden).map((a, i) => (
           <div key={a.id} className="artist-row" onClick={()=>window.jkNavigate(`artist/${a.id}`)}>
             <div className="num">{String(i+1).padStart(2,'0')}</div>
+            <div className="artist-thumb">
+              {a.portrait
+                ? <img src={(window.JK_IMG_MAP && window.JK_IMG_MAP[a.portrait]) || a.portrait} alt={a.name} loading="lazy" />
+                : <div className="artist-thumb-fallback">{a.name.split(' ').map(w=>w[0]).slice(0,2).join('')}</div>}
+            </div>
             <div className="name serif">{a.name}</div>
             <div className="meta">{a.based}</div>
             <div className="meta">{a.medium}</div>
